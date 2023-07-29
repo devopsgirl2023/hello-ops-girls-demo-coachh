@@ -48,17 +48,17 @@ jobs:
         uses: "./.github/actions/aws-auth"
       - name: apply cloudformation stack
         run: aws cloudformation deploy --stack-name ${STACK_NAME} --template-file cloudformation/stack.yaml --parameter-overrides SecurityGroupName=devops-girls-2023 KeyName=devops-girls-2023 HostedZoneId=${HOSTED_ZONE_ID} DomainName=${DOMAIN_NAME} --capabilities CAPABILITY_NAMED_IAM --no-fail-on-empty-changeset
-      # - name: deploy application container
-      #   run: |
-      #     cd ansible
+      - name: deploy application container
+        run: |
+          cd ansible
 
-      #     sed -i "s/AWS_ACCOUNT/${AWS_ACCOUNT}/" roles/app/vars/main.yml
-      #     sed -i "s/IMAGE_TAG/${IMAGE_TAG}/" roles/app/vars/main.yml
-      #     sed -i "s/DOMAIN_NAME/${DOMAIN_NAME}/" roles/nginx/vars/main.yml
+          sed -i "s/AWS_ACCOUNT/${AWS_ACCOUNT}/" roles/app/vars/main.yml
+          sed -i "s/IMAGE_TAG/${IMAGE_TAG}/" roles/app/vars/main.yml
+          sed -i "s/DOMAIN_NAME/${DOMAIN_NAME}/" roles/nginx/vars/main.yml
 
-      #     ip=$(aws cloudformation describe-stacks --stack-name ${STACK_NAME} --query 'Stacks[0].Outputs[?OutputKey == `PublicIP`].OutputValue' --output text)
-      #     echo "${ip}" >> hosts.ini
+          ip=$(aws cloudformation describe-stacks --stack-name ${STACK_NAME} --query 'Stacks[0].Outputs[?OutputKey == `PublicIP`].OutputValue' --output text)
+          echo "${ip}" >> hosts.ini
 
-      #     echo "${SSH_KEY}" | base64 -d > devops-girls-2023.pem
-      #     chmod 600 devops-girls-2023.pem
-      #     ansible-playbook --private-key devops-girls-2023.pem deploy.yml
+          echo "${SSH_KEY}" | base64 -d > devops-girls-2023.pem
+          chmod 600 devops-girls-2023.pem
+          ansible-playbook --private-key devops-girls-2023.pem deploy.yml
