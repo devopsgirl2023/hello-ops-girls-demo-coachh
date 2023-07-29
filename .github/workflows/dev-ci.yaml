@@ -1,5 +1,8 @@
 name: hello ops girls dev pipeline
 run-name: dev-ci
+on:
+  push:
+    branches: ["*"]
 
 env:
   AWS_ACCOUNT: "494526681395"
@@ -17,6 +20,14 @@ jobs:
       - uses: actions/checkout@v3
       - id: aws-auth
         uses: "./.github/actions/aws-auth"
+      - name: Build and push dev image to ECR
+        env:
+          REGISTRY: ${{ steps.aws-auth.outputs.registry }}
+          REPOSITORY: devopsgirl2023/hello-ops-girl
+          IMAGE_TAG: ${{ github.sha }}-xule
+        run: |
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
   test:
     runs-on: ubuntu-latest
