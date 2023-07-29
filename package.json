@@ -11,7 +11,7 @@
     "test": "npx jest",
     "eslint": "npx eslint --ext .ts,.tsx src tests",
     "eslint:fix": "npx eslint --fix",
-    "start": "./run_server.sh"
+    "start": "bash ./run_server.sh"
   },
   "license": "MIT",
   "devDependencies": {
