@@ -1,5 +1,5 @@
 # hello-ops-girls
-![Github Actions](https://github.com/devopsgirl2023/hello-ops-girls-demo/actions/workflows/prod-ci.yaml/badge.svg) [![Playbook](https://img.shields.io/badge/Document-blue.svg?maxAge=2592000)](https://github.com/devopsgirl2023/hello-ops-girls-demo/blob/main/docs/playbook.md)
+![Github Actions](https://github.com/devopsgirl2023/hello-ops-girls-demo-coachh/actions/workflows/prod-ci.yaml/badge.svg) [![Playbook](https://img.shields.io/badge/Document-blue.svg?maxAge=2592000)](https://github.com/devopsgirl2023/hello-ops-girls-demo-coachh/blob/main/docs/playbook.md)
 
 This is a recreation of Google's Dino Game, the one that you can play when you don't have an internet connection. This game was made using TypeScript and Node.js.
 
